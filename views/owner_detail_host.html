@@ -1,0 +1,71 @@
+{% extends "mainframe.html" %}
+
+{% block head %}
+{% endblock %}
+
+{% block navigasi %}
+<li class="nav-item">
+    <a class="nav-link" href="{{ url_for('blueprint.homePage') }}">Home</a>
+</li>
+{% endblock %}
+
+{% block mainContent %}
+<img src="{{ url_for('blueprint.getHostImage', hostId=hostDetail[0]) }}" class="card-img-top mb-5 rounded-3" style="max-height: 500px; object-fit: cover;" alt="...">
+<div class="row row-cols-1">
+    <div class="col">
+
+            <h3>{{ hostDetail[2] }}</h3>
+            <p class="fw-bold">{{ hostDetail[5] }}</p>
+           <!--  <div class="card-text d-flex align-content-center fw-bold border-bottom mb-4 pb-3">
+                <small class="text-body-secondary ms-2 text-decoration-underline">X reviews</small>
+            </div>
+ -->
+            <div class="d-flex align-content-center border-bottom mb-4 pb-2">
+                <img src="{{ url_for('blueprint.getProfilePicture', accountId=hostDetail[1]) }}" class="rounded-circle"
+                height="32" alt="Avatar" loading="lazy" />
+                <p class="ms-3">Hosted by <span id="owner-name"></span> </p>
+            </div>
+
+            <p>{{ hostDetail[3] }}</p>
+
+            <div>
+                <h4>Fasilitas</h4>
+                 <ul>
+                    {% for facility in facilities %}
+                        <li>{{ facility }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+
+
+            <button class="btn btn-danger" id="delete-button">Hapus Host</button>
+            <a href="{{ url_for('blueprint.updateHost', hostId=hostDetail[0], title=hostDetail[2], desc=hostDetail[3], address=hostDetail[5], price=hostDetail[7]) }}"><button class="btn btn-primary" id="change-button">Ubah Host</button></a>
+    </div>
+</div>
+{% endblock %}
+
+{% block script %}
+<script>
+    const delButton = document.getElementById("delete-button")
+    delButton.addEventListener("click",async () => {
+        if (confirm("Apakah anda yakin ingin menghapus host ini ?")) {
+            await fetch("./delete-host?hostId={{hostDetail[0]}}")
+            window.open("./my-host","_self")
+        }
+    })
+
+    fetch(
+        `./account?ownerId={{ hostDetail[1] }}`, 
+        {
+            method : 'GET',
+            headers: {'Access-Control-Allow-Origin': '*'}
+        }
+        )
+        .then(res => res.json())
+        .then(data => {
+            const spanElement =document.getElementById(`owner-name`)
+            spanElement.innerHTML = data.fullname
+        }
+    )
+</script>
+{% endblock %}

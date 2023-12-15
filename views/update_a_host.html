@@ -1,0 +1,76 @@
+
+{% extends "mainframe.html" %}
+
+
+{% block navigasi %}
+<li class="nav-item">
+    <a class="nav-link" href="{{ url_for('blueprint.homePage') }}">Home</a>
+</li>
+<li class="nav-item">
+  <a class="nav-link" href="{{ url_for('blueprint.myHostPage') }}">My Host</a>
+</li>
+{% endblock %}
+
+
+
+{% block mainContent %}
+    <form class="mt-3 d-flex flex-column gap-5" action="" method="POST" enctype="multipart/form-data">
+        <input type="text" hidden name="hostId" id="" value="{{ hostId }}">
+
+        <div>
+            <label for="name" class="form-label">Nama hunian</label>
+            <input name="title" type="text" class="form-control" id="name" value="{{ title }}">
+        </div>
+
+        <div class="form-floating">
+            <textarea name="description" class="form-control" placeholder="Leave a comment here" id="floatingTextarea2" style="height: 100px">{{ desc }}</textarea>
+            <label for="floatingTextarea2">Description</label>
+        </div>
+
+        <div>
+            <label for="placeType" class="form-label">Tipe rumah sewa</label>
+            <div class="row row-cols-3 g-3">
+                <form-radio name="placeType" id="ptHouse" label="House"></form-radio>
+                <form-radio name="placeType" id="ptApartment" label="Apartment"></form-radio>
+                <form-radio name="placeType" id="ptCabin" label="Cabin"></form-radio>
+                <form-radio name="placeType" id="ptCamper/RV" label="Camper/RV"></form-radio>
+                <form-radio name="placeType" id="ptContainer" label="Container"></form-radio>
+                <form-radio name="placeType" id="ptTent" label="Tent"></form-radio>
+            </div>
+        </div>
+
+        <div>
+          <label for="exampleInputEmail1" class="form-label">Alamat lengkap</label>
+          <input name="address" type="text" class="form-control" id="exampleInputEmail1" value="{{ address }}">
+          <!-- <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div> -->
+        </div>
+        
+        <div>
+            <label for="facilities" class="form-label">Fasilitas</label>
+            <div class="row row-cols-3 g-3">
+                <form-check name="facilities" id="wifi" label="wifi"></form-check>
+                <form-check name="facilities" id="tv" label="tv"></form-check>
+                <form-check name="facilities" id="dapur" label="dapur"></form-check>
+                <form-check name="facilities" id="garasi" label="garasi"></form-check>
+                <form-check name="facilities" id="AC" label="AC"></form-check>
+                <form-check name="facilities" id="kulkas" label="kulkas"></form-check>
+            </div>
+        </div>
+
+        <div>
+            <label for="price" class="form-label">Harga sewa</label>
+            <div class="input-group mb-3">
+                <span class="input-group-text">Rp</span>
+                <input name="price" type="number" class="form-control" aria-label="Amount (to the nearest dollar)" id="price" value="{{ price }}">
+                <span class="input-group-text">.00</span>
+            </div>
+        </div>
+        
+        <button type="submit" class="btn btn-primary btn-outline-secondary mt-3">Submit</button>
+    </form>
+{% endblock %}
+
+{% block script %}
+<script src="../static/components/form_radio.js"></script>
+<script src="../static/components/form_check.js"></script>
+{% endblock %}

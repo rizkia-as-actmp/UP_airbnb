@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <title>AirBNB</title>
+    <link rel="stylesheet" href="../../static/style/bootstrap.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+        
+
+    {% block head %}
+    {% endblock %}
+
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar " style="background-color: #e3f2fd;">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">
+                <img src="../static/images/blank-profile-picture.jpg" alt="Logo" width="30" height="24" class="d-inline-block align-text-top">
+                Bootstrap
+            </a>
+
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                    {% block navigasi %}
+                    {% endblock %}
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="container mt-5">
+
+        {% block mainContent %}
+
+        
+        {% endblock %}
+
+    </div>
+
+
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+
+    
+    <div class="sticky-bottom bottom-0 footer text-center py-3">
+        <div class="container">
+            <p class="text-muted mb-0">Dibuat oleh Rizkia Adhy Syahputra &copy; 2023. Semua hak cipta dilindungi.</p>
+        </div>
+    </div>
+    
+    <script src="../../static/js/bootstrap.bundle.js"></script>
+    {% block script %}
+    {% endblock %}
+
+    <script>
+        // setInterval(() => {
+        //     location.reload()
+        // }, 2000);
+    </script>
+</body>
+</html>

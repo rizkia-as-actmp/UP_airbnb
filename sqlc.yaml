@@ -1,0 +1,17 @@
+version: "2"
+plugins:
+  - name: "py"
+    wasm:
+      url: https://downloads.sqlc.dev/plugin/sqlc-gen-python_1.2.0.wasm
+      sha256: a6c5d174c407007c3717eea36ff0882744346e6ba991f92f71d6ab2895204c0e
+sql:
+- engine: "mysql"
+  queries: "db/query"
+  schema: "db/schema/schema.sql"
+  codegen:
+  - plugin: "py"
+    out: "./tempfix"
+    options:
+      package: sqlc
+      emit_sync_querier: true
+      query_parameter_limit: 1

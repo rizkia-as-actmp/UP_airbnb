@@ -1,0 +1,43 @@
+{% extends "mainframe.html" %}
+
+{% block head %}
+{% endblock %}
+
+{% block navigasi %}
+<li class="nav-item">
+    <a class="nav-link" href="{{ url_for('blueprint.homePage') }}">Home</a>
+</li>
+{% endblock %}
+
+{% block mainContent %}
+<h1>List Tickets</h1>
+<ul class="list-group">
+    <table class="table table-bordered mt-4">
+        <thead>
+            <tr>
+                <th class="text-center">No</th>
+                <th class="text-center">Host</th>
+                <th class="text-center">Valid At</th>
+                <th class="text-center">Expired At</th>
+                <th class="text-center">Price</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for ticket in tickets %}
+            <tr>
+                <td class="text-center">{{ loop.index }}</td>
+                <td class="text-center fw-bold">
+                    <a href="{{ url_for('blueprint.detailHostPage', hostId=ticket[2]) }}" class="btn btn-primary">>></a>
+                </td>
+                <td class="text-center">{{ ticket[3] }}</td>
+                <td class="text-center">{{ ticket[4] }}</td>
+                <td class="text-center">{{ ticket[6] }}</td>
+            </tr>
+            {% endfor %}
+            
+        </tbody>
+    </table>
+{% endblock %}
+
+{% block script %}
+{% endblock %}

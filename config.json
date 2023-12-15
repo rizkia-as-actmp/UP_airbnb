@@ -1,0 +1,10 @@
+{
+    "app_secret_key" : "UP_airbnb_international_top_secret_key",
+    "db_URL" : "mysql://root:21204444@172.21.0.2:3306/UP_airbnb",
+    "flask_templates_directory" : "./views",
+    "temp_image_processor_path" : "./temp-image-processor",
+    "session_is_logged_in" : "session_is_logged_in",
+    "session_user_id" : "session_user_id",
+    "session_user_fullname" : "session_user_fullname",
+    "session_user_email" : "session_user_email"
+}

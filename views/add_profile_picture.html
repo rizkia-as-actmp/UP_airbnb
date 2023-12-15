@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./../../static/style/bootstrap.min.css">
+</head>
+<body>
+
+    <div class="container mt-5">
+        <form class="d-flex flex-column gap-5">
+
+            <img src="./../../static/images/blank-profile-picture.jpg" id="profile-picture" alt="avatar"
+            class="rounded-circle card-img-top d-block mx-auto" style="height: 150px; width: 150px; object-fit: cover">
+            
+            <div class="mb-3">
+                <label for="formFile" class="form-label">Profile picture</label>
+                <input required name="file-input" class="form-control" type="file" id="file-input" accept="image/*">
+            </div>
+            <button type="submit" class="btn btn-primary w-100 mt-5">Submit</button>
+        </form>
+    </div>
+
+    
+    <script src="./../../static/js/bootstrap.bundle.js"></script>
+    <script src="./../../static/components/yellow-star.js"></script>
+    <script>
+        const fileInput = document.getElementById("file-input")
+        const profilePicture = document.getElementById("profile-picture")
+
+        fileInput.addEventListener("change", e => {
+            files = e.target.files;
+            if (FileReader && files && files.length) {
+                var fr = new FileReader();
+                fr.onload = () => profilePicture.src = fr.result;
+                fr.readAsDataURL(files[0]);
+            }
+        })
+
+        const form = document.getElementsByTagName('form')[0];
+
+        form.addEventListener('submit', async e => {
+            e.preventDefault()
+            const formData = new FormData();
+            formData.append('file', fileInput.files[0]);
+            console.log(fileInput.files[0].size)
+
+            const params = new URLSearchParams(location.search);
+            const accountId = params.get('accountId');
+
+            const url = `./add-profile-picture?accountId=${accountId}`;
+
+            await fetch(url, {
+                method: 'POST',
+                body: formData,
+            })
+
+            window.open("./","_self")
+        })
+    </script>
+</body>
+</html>

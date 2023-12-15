@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+
+
+
+<!-- <img src="http://127.0.0.1:5000/host-image?hostId=13" alt="" loading="lazy">
+<img src="http://127.0.0.1:5000/host-image?hostId=14" alt="" loading="lazy">
+    -->
+    
+</body>
+<script>
+    console.log("refresh")
+    let i = [13,14]
+    let k = 13
+
+    function tes() {
+        var img = document.createElement('img');
+        // var imageUrl = urlCreator.createObjectURL( blob );
+        img.src = `http://127.0.0.1:5000/host-image?hostId=${k}`;
+        document.body.appendChild(img);
+        k++
+    }
+
+    var refreshIntervalId = setInterval(tes, 100);
+
+    /* later */
+    setTimeout(() => {
+        clearInterval(refreshIntervalId);
+    }, 250);
+
+    // fetch(
+    // `http://127.0.0.1:5000/host-image?hostId=13`, 
+    // {
+    //     method : 'GET',
+    //     headers: {'Access-Control-Allow-Origin': '*'}
+    // }
+    // )
+    // .then(res => res.arrayBuffer())
+    // .then(data => {
+    //     // var blob = new Blob( [ data ], { type: "image/jpeg" } );
+    //     // var urlCreator = window.URL || window.webkitURL;
+    //     // var img = document.createElement('img');
+    //     // var imageUrl = urlCreator.createObjectURL( blob );
+    //     // img.src = imageUrl;
+    //     // document.body.appendChild(img);
+    // })
+
+
+    // Obtain a blob: URL for the image data.
+    // var arrayBufferView = new Uint8Array( this.response );
+    var blob = new Blob( [ tesdata ], { type: "image/jpeg" } );
+    var urlCreator = window.URL || window.webkitURL;
+    var img = document.createElement('img');
+    var imageUrl = urlCreator.createObjectURL( blob );
+    img.src = imageUrl;
+    document.body.appendChild(img);
+
+
+            
+
+</script>
+</html>
